@@ -1,119 +1,162 @@
-<div align="center">
+# WhiteBox AI
+### A score should lead back to evidence.
 
-# ⬜ WhiteBox AI
+A hiring-assessment workspace in which the job criteria, candidate evidence, scoring rubric and human decision remain connected. The central object is a **published, versioned assessment plan**, not a free-form conversation with a model.
 
-### Explainable AI Hiring Operating System
+![Assessment review in the synthetic NorthStar demo workspace: a frozen plan, cited evidence and a separate human decision panel.](docs/portfolio/scorecard.png)
 
-*"Vertical AI, built for fair hiring. Not a faster black box — a white one you can see into."*
+*Assessment review in the synthetic NorthStar demo workspace: a frozen plan, cited evidence and a separate human decision panel.*
 
-![Status](https://img.shields.io/badge/status-MVP_in_development-7B93FF?style=flat-square)
-![Stage](https://img.shields.io/badge/stage-P0%20%2B%20P1%20built-46D08A?style=flat-square)
-![Stack](https://img.shields.io/badge/stack-Next.js_15_·_TypeScript-060608?style=flat-square)
-![HITL](https://img.shields.io/badge/decisions-human--final-FF6A2E?style=flat-square)
+**QwertyS · National Founder Cup participation · development paused**
 
-<br/>
+[Watch the recorded development-demo walkthrough](docs/portfolio/media/whitebox-demo.mp4) ·
+[Read the competition pitch deck](docs/portfolio/media/WhiteBoxAI-NFC-2026.pdf) ·
+[Competition and version record](docs/portfolio/HACKATHON.md)
 
-<img src="docs/screenshots/01-dashboard.png" alt="WhiteBox AI — HR dashboard" width="90%"/>
+## Fix the criteria before reviewing the answers
 
-</div>
+An assessment is difficult to audit when questions, weights or evaluation criteria quietly change between candidates. WhiteBox starts with the vacancy: job analysis, criteria, evidence methods, stages, behavioural scoring anchors, weights and governance are assembled before publication.
 
----
+Publishing freezes that configuration into a version. Candidate submissions and later reviews stay attached to the exact version they used. A score can therefore be interpreted against the rubric that actually existed at the time, rather than against the latest edited vacancy.
 
-## 🕳 The problem
+![The vacancy studio connects criteria to the structured question plan and exposes checks before publication.](docs/portfolio/studio.png)
 
-Companies receive **hundreds to thousands of applications per role** and cope with AI/ATS screening
-that decides who ever reaches a human — as a **black box**:
+*The vacancy studio connects criteria to the structured question plan and exposes checks before publication.*
 
-- ❌ Candidates never learn *why* they were rejected.
-- ❌ Recruiters can't see *which factors* drove a score.
-- ❌ Different LLMs rank identical résumés differently — and hidden bias gets **replicated, not corrected**.
-- ❌ Résumé keywords dominate, while leadership, critical thinking and communication are barely assessed.
-- ❌ Regulators now treat hiring AI as **high-risk** (EU AI Act, NYC Local Law 144), yet companies have
-  no auditable way to prove fair screening.
+## A candidate journey with explicit boundaries
 
-## 💡 The answer
+The candidate opens an invitation, reviews the notice and completes the published stages. For recorded answers, the browser supports local capture, review and re-recording before the candidate chooses to use the recording. A text-only accommodation follows the same questions and rubric.
 
-WhiteBox AI is a **two-sided platform for the first screening stage**. The AI never makes the final
-decision — it *structures information*; **the human decides**. Every score arrives fully explained:
+The recording and the transcript have different jobs. Video provides material for an authorized reviewer; the scoring input is the approved transcript plus the published rubric. The implementation does not use appearance, gaze, emotion, accent or personality inferred from the camera as scoring features.
 
-| | What every score ships with |
-|---|---|
-| 🥇 | **Ranked drivers** — the top factors that pushed the score up or down, modeled on the FICO/VantageScore *reason-code* approach — the only legally tested pattern of explainable adverse action |
-| 🗣 | **Confidence as a phrase**, not a bare number |
-| 🧾 | **Evidence chips** — every claim linked to actual interview fragments |
-| 🔍 | **Collapsible reasoning trace** — the full path from answer to score |
-| ✋ | **Mandatory human exit** — accept / change / recompute / reject-with-reason, written to an **append-only, hash-chained audit log** |
+### A correction must not silently rewrite the evidence
 
-> When any design decision is ambiguous, the tie-breaker is:
-> **does this make the reasoning more visible and more contestable?**
+The provider transcript is retained as an immutable original, with a hash recorded in its receipt. A candidate correction is stored separately with its reason and change information. Corrected or manually supplied text needs human verification against the clip before it can be used for scoring. This keeps accessibility and correction support compatible with an inspectable evidence trail.
 
----
+## Review the answer behind the number
 
-## 🖥 The product
+The review screen shows the assessment stage, its state, the reported score and the supporting citations together. A reviewer can inspect the exact answer passages rather than accepting a generic paragraph explaining why an applicant is “a strong fit.” Human-stage observations are recorded separately from a final disposition.
 
-### HR side — a dense, keyboard-first instrument
+![Answer excerpts sit beside the human review workflow. All company, reviewer and candidate records shown are demonstration data.](docs/portfolio/citations.png)
 
-| Candidate ranking | Explainable scorecard |
-|---|---|
-| <img src="docs/screenshots/02-ranking.png" width="100%"/> | <img src="docs/screenshots/04-scorecard-overview.png" width="100%"/> |
+*Answer excerpts sit beside the human review workflow. All company, reviewer and candidate records shown are demonstration data.*
 
-| Per-competency evidence | Vacancy wizard (NL → config) |
-|---|---|
-| <img src="docs/screenshots/03-scorecard-competencies.png" width="100%"/> | <img src="docs/screenshots/12-wizard-config.png" width="100%"/> |
+The reviewer can advance, hold, request a rescore or reject. Each action requires a written reason and is appended to the audit history. The UI keeps that accountable human action separate from the model-assisted assessment output.
 
-### Candidate side — calm, transparent, dignified
+![A recorded demonstration decision: the rationale remains visible alongside the same frozen assessment and citations.](docs/portfolio/decision.png)
 
-| System check | AI interview | Status & trust panel |
-|---|---|---|
-| <img src="docs/screenshots/14-system-check.png" width="100%"/> | <img src="docs/screenshots/15-interview-question.png" width="100%"/> | <img src="docs/screenshots/06-status.png" width="100%"/> |
+*A recorded demonstration decision: the rationale remains visible alongside the same frozen assessment and citations.*
 
----
+## How the application is organized
 
-## ⚙️ How it works
-
-```mermaid
+~~~mermaid
 flowchart LR
-    A[📋 Vacancy config<br/>competencies + weights] --> B[🎙 Structured AI interview<br/>adaptive follow-ups]
-    B --> C[🧠 Multimodal analysis<br/>text · voice · video]
-    C --> D[📊 Explainable scorecard<br/>drivers · confidence · evidence · trace]
-    D --> E{✋ Human decision<br/>accept / change / recompute / reject}
-    E --> F[🔗 Append-only,<br/>hash-chained audit log]
+ A[Job analysis and rubric] --> B[Frozen vacancy version]
+ B --> C[Candidate stages]
+ C --> D[Private recording and transcript receipt]
+ D --> E[Verified evidence]
+ E --> F[Rubric-based review and citations]
+ F --> G[Named human decision]
+ B --> H[Audit trail]
+ D --> H
+ G --> H
+~~~
+
+The working application uses **Next.js and PostgreSQL**, private S3-compatible recording storage, server-side media validation and model-backed transcription/evidence review. Playback passes through an authenticated, tenant-scoped API. Provider keys and storage credentials stay on the server.
+
+Several engineering choices make failure explicit. New AI-required vacancy versions do not quietly substitute fabricated deterministic answers if a provider is unavailable. Recording validation checks both the declared media type and a decodable file. Retention is a stateful workflow that tracks metadata removal separately from object deletion, including retries when storage deletion fails.
+
+## What this case study demonstrates
+
+The screenshots document the authoring → evidence review → human decision path in a synthetic demonstration workspace. They establish an implemented workflow, not measured hiring validity, legal compliance or a proven reduction in bias. A real deployment still requires validated assessment methods and operational controls around access, retention and candidate notices.
+
+The product’s distinctive engineering question is how to keep an AI-assisted assessment inspectable after the answer, rubric and reviewer have all changed over time. Version binding, separate correction records and evidence citations are the mechanisms used to answer it.
+
+
+## From competition prototype to a paused project
+
+WhiteBox AI was prepared for the **National Founder Cup 2026** startup competition.
+The event is named in the retained pitch deck and presentation materials. The team
+reports that it did not receive a prize and subsequently paused development. The
+working prototype and engineering record remain useful as a completed exploration
+of evidence-based hiring workflows; paused development is its current status.
+
+The [competition record](docs/portfolio/HACKATHON.md) links the organizer's event information
+and separates that context from the team's own participation record. The original
+deck and demo can also be found in the source repository's `pitch-deck-demo-video`
+branch, when access is available.
+
+### The gallery and source have identifiable versions
+
+The screenshots show the later assessment-studio development build with synthetic
+demonstration data. That working Next.js studio is now included in this repository.
+It was imported from the `p0-p1-build` branch of the Eye172 project copy; the original
+public history and its earlier gallery are preserved. The video included here is the retained local
+development-demo walkthrough, rather than a new live hiring session.
+
+The Eye172 copy retains older prototype iterations on its `master` and pitch
+branches. In this repository, `main` contains the later studio. The
+[archived early overview](docs/archive/README-early-snapshot.md) records what the
+public repository contained before this publication; its planned stack is historical.
+
+## Run the studio locally
+
+Use **Node.js 24** and npm. The isolated development workspace uses synthetic
+records and local persistence; PostgreSQL and private S3 storage are the production path.
+
+```sh
+npm ci
 ```
 
-- **Anti-abuse** mechanisms against generative-AI misuse, plus document verification.
-- **Organizational-psychology methods** for competencies beyond résumé keywords.
-- **Bias monitoring** (Fairlearn/Aequitas) and GDPR-grade data lifecycle designed in from day one.
+Create `.env.local`:
 
-## 🎨 Design language
+```dotenv
+NODE_ENV=development
+NEXT_PUBLIC_APP_URL=http://localhost:3100
+WBX_DEMO_MODE=true
+```
 
-A **white, transparent, glowing cube** — light passes through = explainability in one image.
-Dark near-black canvas, white-on-top dominance, and **invertible "white-box" panels** for trust
-moments. Elevation is 1 px hairlines, numbers are tabular, labels are mono HUD. Two registers:
-HR = dense instrument · candidate = calm reassurance.
+```sh
+npm run dev -- --port 3100
+```
 
-## 🧱 Architecture
+Open `http://localhost:3100`. Demo HR: `admin@whitebox.local` / `WhiteBox!2026`;
+candidate codes: `WBX-3N8D` and the already-submitted `WBX-7Q4K`.
+These are intentionally public fixture credentials, not production access.
+New AI-authored assessments require a server-side provider key; the fixture
+workspace has a separate deterministic compatibility path.
 
-**Prototype:** Next.js 15 (App Router) · TypeScript · Tailwind · token-driven design system ·
-typed AI contracts (swap stubs → real pipeline with zero UI change).
+The [development guide](DEVELOPMENT.md) explains the complete candidate journey,
+transcript verification, test commands and routes. [DEPLOYMENT.md](DEPLOYMENT.md)
+and [SECURITY.md](SECURITY.md) document PostgreSQL, storage, retention and the
+deployment boundary. Application code is in `app/` and `lib/server/`; ordered
+schema migrations are in `db/migrations/`; automated tests are in `tests/`.
 
-**Target stack:** FastAPI AI core · PostgreSQL + pgvector · Redis · Temporal workflows
-(interview → transcription → scoring → explainability) · Claude / GPT-4-class LLMs with task-based
-routing, open models via vLLM for data residency · LangGraph · Instructor · Langfuse · WorkOS.
+```sh
+npm run check
+```
 
-## 🗺 Roadmap
+[Source publication record](docs/SOURCE-PUBLICATION.md) identifies the imported
+version and distinguishes this new publication commit from the original shared development.
 
-- [x] **P0 — Foundation:** design tokens, app shell, ⌘K palette, white-box primitive
-- [x] **P1 — Core differentiator:** ranking, explainable scorecard, HITL + hash-chained audit log
-- [ ] **P2 — Configuration:** competency builder, onboarding, full interview flow
-- [ ] **P3 — Real AI pipeline:** transcription, scoring, bias monitoring
-- [ ] **P4 — Polish:** 3D glowing-cube hero, motion system, hardening
 
 ---
 
-<div align="center">
+### QwertyS
 
-**Status:** working MVP in active development · **Founded in** Astana, Kazakhstan 🇰🇿
+Jointly developed by **[Nurkhan Aimukatov / pip00sya](https://github.com/pip00sya)** and
+**[Shakhnazar Akhmer / Eye172](https://github.com/Eye172)**.
+Both are Full-stack, Software and AI Engineers; Shakhnazar also works in ML engineering.
+Our shared experience includes product design, application development, AI integration,
+testing and preparing working hackathon submissions. We contributed as equal engineering
+partners across the project.
 
-*Source code is private while the MVP is under active development — this repository is the public project overview.*
 
-</div>
+This public implementation and project presentation are maintained on Nurkhan's account.
+[Companion showcase on Shakhnazar's account](https://github.com/Eye172/whitebox-ai-showcase) ·
+[Nurkhan's projects](https://github.com/pip00sya) · [Shakhnazar's projects](https://github.com/Eye172).
+
+[Public studio implementation](https://github.com/pip00sya/whitebox-ai) · [Eye172 project copy](https://github.com/Eye172/whitebox-ai-1) (access depends on visibility).
+
+[Hackathon record and supporting sources](docs/portfolio/HACKATHON.md) ·
+[Media provenance](docs/portfolio/MEDIA.md).
