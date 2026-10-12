@@ -1,21 +1,30 @@
-# Media provenance
+# WhiteBox: studio demonstration and original competition pitch
 
-This showcase preserves the project-specific gallery from
-[Eye172/whitebox-ai-showcase](https://github.com/Eye172/whitebox-ai-showcase) and adds the retained project media
-identified below. Screenshots show real application interfaces; synthetic demo records,
-archived runs and interface generations are identified in the README captions.
+The scorecard, studio, citations and decision images show the implemented later
+assessment studio in a synthetic demonstration workspace. They were retained
+from the original Eye172 project presentation. Company/candidate fixture records
+are not real recruitment outcomes.
 
-QwertyS: Nurkhan Aimukatov and Shakhnazar Akhmer. Existing presentation authorship is
-credited to the shared project and the original Eye172 showcase. The source repository retains its original commit history. The portfolio
-update does not use commit counts to attribute individual engineering work.
+`media/whitebox-demo.mp4` is the retained 83.967-second local development
+walkthrough. It follows authoring, an invitation, a recorded interview and
+candidate/evidence review with scripted job answers. It is already public project
+demonstration material; it is distinct from the earlier NFC competition video.
+`media/demo-preview.jpg` is an unaltered frame at approximately 15 seconds.
 
-Application licenses and third-party media rights are governed by their respective
-source projects; this presentation repository does not relicense the application code
-or third-party university photographs. The LOCUS case/regulations, where included,
-are organizer documents retained with their original attribution.
+`media/WhiteBoxAI-NFC-2026.pdf` is the original National Founder Cup pitch.
+The editable PPTX is retained from the same source pitch branch.
+`media/pitch-preview.jpg` renders the PDF's first page without changing its text.
+Market figures, legal references and projected savings in the deck remain dated
+pitch material and assumptions, not a portfolio claim of current legal compliance
+or measured hiring validity.
 
-[File hashes and sizes](media-manifest.json) identify the included media. No certificate
-image or award graphic has been invented. Certificates held by the team are mentioned
-only in the event record until their actual scans are supplied.
+The later studio is now publicly implemented in
+[pip00sya/whitebox-ai](https://github.com/pip00sya/whitebox-ai); its publication
+record identifies the imported source version. The earlier competition branches
+in the [Eye172 archive](https://github.com/Eye172/whitebox-ai-1/tree/pitch-deck-demo-video/pitch)
+are public at the 12 October 2026 review. The original NFC video remains linked
+there rather than being duplicated in this update. Development is paused and no competition
+prize is claimed. The root README, [TECHNICAL.md](TECHNICAL.md) and
+[HACKATHON.md](HACKATHON.md) keep these versions and claims separate.
 
-`media/whitebox-demo.mp4` is the retained local development-demo walkthrough of the assessment studio. It is distinct from the earlier NFC competition video kept in the source pitch branch.
+[File hashes and sizes](media-manifest.json).

@@ -10,6 +10,16 @@
     "sha256": "2af3937589a6a07b4d444251a9748aac281817734873ca0ca6145491c4a4d85c"
   },
   {
+    "file": "media/demo-preview.jpg",
+    "bytes": 15414,
+    "sha256": "1554531f397b2ab88d7041c11407419b047b1c8213e213e6c1acdcaad8ac485d"
+  },
+  {
+    "file": "media/pitch-preview.jpg",
+    "bytes": 103049,
+    "sha256": "c87bc2f2b132f580da7a85ae2ff45a8d9683e0f7b3d7aa6e3bd9535e3d934538"
+  },
+  {
     "file": "media/whitebox-demo.mp4",
     "bytes": 29609761,
     "sha256": "3e35087429929cfea0b195caf86bd23962c95c9b6a3adfd24edf5428b1a80c04"
@@ -18,6 +28,11 @@
     "file": "media/WhiteBoxAI-NFC-2026.pdf",
     "bytes": 1407355,
     "sha256": "2d1f55adfaae8e43c4f0be0ebf11738ab20c460eca7b70b8dfa3472b6462b380"
+  },
+  {
+    "file": "media/WhiteBoxAI-NFC-2026.pptx",
+    "bytes": 2786080,
+    "sha256": "001a86bb72ef942cbde2d925387eba1ac154a5644bfdd6ade359557df9432092"
   },
   {
     "file": "scorecard.png",

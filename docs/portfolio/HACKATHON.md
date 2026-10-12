@@ -19,7 +19,10 @@ No such placement is claimed here.
 - [Retained local development video](media/whitebox-demo.mp4): the studio-demo walkthrough.
 - [Retained competition pitch deck](media/WhiteBoxAI-NFC-2026.pdf): the original NFC presentation.
 
-The Eye172 archive branches require access; the later studio source is publicly available in `pip00sya/whitebox-ai`. Screenshots and the included development video are public presentation
+The Eye172 project and its retained archive branches are public at the
+12 October 2026 review. The [original NFC competition video](https://github.com/Eye172/whitebox-ai-1/blob/pitch-deck-demo-video/pitch/demo/whitebox-demo.mp4)
+is available in its original branch; it is distinct from the later studio walkthrough.
+The later studio source is also publicly available in `pip00sya/whitebox-ai`. Screenshots and the included development video are public presentation
 materials; they do not establish validated hiring outcomes.
 
 
